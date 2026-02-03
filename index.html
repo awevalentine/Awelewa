@@ -11,11 +11,11 @@
             font-family: 'Georgia', serif; 
             background-color: #ffeef0; 
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
             overflow-x: hidden;
             color: #4a4a4a;
         }
-        .container { position: relative; width: 100%; height: 200px; margin-top: 30px; }
+        .container { position: relative; width: 100%; height: 150px; margin-top: 20px; }
         
         button { 
             padding: 15px 35px; 
@@ -23,8 +23,8 @@
             cursor: pointer; 
             border-radius: 50px; 
             border: none; 
-            transition: all 0.2s ease; 
             font-weight: bold;
+            transition: 0.3s;
         }
         #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
         #noBtn { 
@@ -34,8 +34,6 @@
             z-index: 999;
         }
 
-        h1 { color: #d90429; font-size: 2.2rem; }
-        
         .affirmation-card {
             max-width: 600px;
             margin: 20px auto;
@@ -46,16 +44,17 @@
             line-height: 1.8;
             font-style: italic;
             border-left: 5px solid #ff4d6d;
+            text-align: left;
         }
 
-        .final-photo {
-            width: 300px;
-            height: 300px;
+        .main-photo {
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 20px;
-            border: 8px solid white;
-            margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -66,12 +65,12 @@
     </audio>
 
     <div id="main-content">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2Zic3VqZzNqam9pZnBqZzRmanBqZzRmanBqZzRmanBqZzRmanBqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KzM1lAfJjCW3TM3p2G/giphy.gif" width="150">
+        <img src="awelewa.jpg" class="main-photo" alt="AWELEWA">
         
-        <h1>Awéléwà Obinrin</h1>
+        <h1 style="color: #d90429;">Awéléwà Obinrin</h1>
 
         <div class="affirmation-card">
-            "It was love at first sight the moment I saw you something definitely shifted I’m pretty sure it was my padlocked heart breaking itself YES that’s the one. There’s just something about you, your presence and your energy felt like home. The way you looked at me like we had history in different lifetime maybe we did but I just knew you were the one from the moment our eyes met. I thought I know what chemistry felt like but this is a whole different level and let’s be honest you were a walking distraction from the jump I couldn’t keep my eyes off you. How do you expect me to keep a straight face when you looked so good and you smiled like that? I just hope you will make my search over because I’ve finally found you and I don’t want to ever look away again."
+            "It was love at first sight the moment I saw you something definitely shifted I’m pretty sure it was my padlocked heart breaking itself YES that’s the one. There’s just something about you, your presence and your energy felt like home. The way you looked at me like we had history in different lifetime maybe we did but I just knew you were the one from the moment our eyes met. I thought I know what chemistry felt like but this is a whole different level and let’s be honest you were a walking distraction from the jump I couldn’t keep our eyes off you. How do you expect me to keep a straight face when you looked so good and you smiled like that? I just hope you will make my search over because I’ve finally found you and I don’t want to ever look away again."
         </div>
 
         <h2 style="color: #d90429;">Will you be my Valentine? 🌹</h2>
@@ -85,38 +84,27 @@
     <script>
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            // Ensures the button stays within the viewable screen area
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 40);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 40);
-            
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
         function celebrate() {
-            // Play Wizkid
             const song = document.getElementById('vibe');
             song.play();
 
-            // Confetti effect
             confetti({
                 particleCount: 150,
                 spread: 70,
-                origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ffffff', '#ff0000']
+                origin: { y: 0.6 }
             });
 
-            // Update content for the "Yes" screen
             document.body.innerHTML = `
                 <div style="padding-top: 50px;">
-                    <h1>I KNEW YOU'D SAY YES! ❤️</h1>
-                    <p style="font-size: 22px; color: #d90429;">Forever to go with you, Awéléwà.</p>
-                    
-                    <img src="awelewa.jpg" class="final-photo" alt="My Valentine" onerror="this.src='https://media.giphy.com/media/l41lH4ADRtAYnGsLe/giphy.gif'">
-                    
-                    <div style="margin-top: 30px;">
-                        <p>♫ Love My Baby - Wizkid ♫</p>
-                    </div>
+                    <h1 style="color: #d90429;">I KNEW YOU'D SAY YES! ❤️</h1>
+                    <img src="awelewa.jpg" style="width: 300px; border-radius: 20px; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <p style="font-size: 24px; color: #ff4d6d; font-weight: bold; margin-top: 20px;">Forever to go with you, Awéléwà.</p>
                 </div>
             `;
         }
