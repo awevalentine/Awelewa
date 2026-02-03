@@ -2,114 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For AWELEWA ❤️</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        body { 
-            text-align: center; 
-            font-family: 'Arial', sans-serif; 
-            background-color: #ffeef0; 
-            margin: 0;
-            padding: 50px 20px;
-            overflow-x: hidden;
-        }
-        .container { position: relative; width: 100%; height: 200px; margin-top: 30px; }
-        button { 
-            padding: 15px 35px; 
-            font-size: 22px; 
-            cursor: pointer; 
-            border-radius: 50px; 
-            border: none; 
-            transition: all 0.2s ease; 
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+        body { text-align: center; font-family: 'Arial', sans-serif; background-color: #ffeef0; padding: 50px; overflow: hidden; }
+        .container { position: relative; width: 100%; height: 300px; margin-top: 50px; }
+        button { padding: 15px 30px; font-size: 20px; cursor: pointer; border-radius: 10px; border: none; transition: 0.3s; }
         #yesBtn { background-color: #ff4d6d; color: white; }
-        #noBtn { 
-            background-color: #808080; 
-            color: white; 
-            position: absolute; 
-            z-index: 999;
-        }
-        h1 { color: #d90429; font-size: 2.5rem; margin-bottom: 10px; }
-        .love-letter {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.1);
-            line-height: 1.6;
-            color: #4a4a4a;
-            font-style: italic;
-        }
-        .final-photo {
-            width: 300px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 8px solid #ff4d6d;
-            margin-top: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
+        #noBtn { background-color: #808080; color: white; position: absolute; }
+        .final-photo { width: 300px; border-radius: 15px; border: 5px solid white; margin-top: 20px; }
     </style>
 </head>
 <body>
+    <audio id="vibe"><source src="love-my-baby.mp3" type="audio/mpeg"></audio>
 
-    <audio id="mySong">
-        <source src="our-song.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="main-content">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2Zic3VqZzNqam9pZnBqZzRmanBqZzRmanBqZzRmanBqZzRmanBqJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/KzM1lAfJjCW3TM3p2G/giphy.gif" width="200">
-        
-        <h1>Will you be my Valentine, AWELEWA? 🌹</h1>
-
-        <div class="love-letter">
-            "To my beautiful AWELEWA, every moment with you is a gift. You make my world brighter, and I'm so grateful to have you by my side. I wanted to create something special just for you."
-        </div>
-        
-        <div class="container">
-            <button id="yesBtn" onclick="celebrate()">Yes!</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
-        </div>
+    <h1>Will you be my Valentine, AWELEWA? 🌹</h1>
+    <div class="container">
+        <button id="yesBtn" onclick="celebrate()">Yes!</button>
+        <button id="noBtn" onmouseover="moveButton()">No</button>
     </div>
 
     <script>
         function moveButton() {
             const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
             btn.style.left = x + 'px';
             btn.style.top = y + 'px';
         }
 
         function celebrate() {
-            // Play the song
-            const song = document.getElementById('mySong');
-            song.play();
-
-            // Launch Confetti
-            confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y: 0.6 },
-                colors: ['#ff4d6d', '#ffffff', '#ff0000']
-            });
-
-            // Update content and show her photo
+            document.getElementById('vibe').play();
+            confetti({ particleCount: 150, spread: 70 });
             document.body.innerHTML = `
-                <div style="padding-top: 50px;">
-                    <h1>I KNEW YOU'D SAY YES! ❤️</h1>
-                    <p style="font-size: 20px; color: #d90429;">Forever to go with you, AWELEWA.</p>
-                    
-                    <img src="awelewa.jpg" class="final-photo" alt="AWELEWA" onerror="this.src='https://media.giphy.com/media/l41lH4ADRtAYnGsLe/giphy.gif'">
-                    
-                    <div style="margin-top: 30px;">
-                        <p>♫ Now playing our song... ♫</p>
-                    </div>
-                </div>
+                <h1>I KNEW YOU'D SAY YES! ❤️</h1>
+                <img src="awelewa.jpg" class="final-photo">
+                <p>I love you so much!</p>
             `;
         }
     </script>
