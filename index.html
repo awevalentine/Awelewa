@@ -1,146 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For AWELEWA ❤️</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <style>
-        body { 
-            text-align: center; 
-            font-family: 'Georgia', serif; 
-            background-color: #ffeef0; 
-            margin: 0;
-            padding: 20px;
-            overflow-x: hidden;
-            color: #4a4a4a;
-        }
-        .container { position: relative; width: 100%; height: 150px; margin-top: 20px; }
+<style>
+    /* ... existing styles ... */
+    .container { 
+        position: relative; 
+        width: 100%; 
+        height: 400px; /* Increased height so the No button has room to run */
+        margin-top: 20px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #noBtn { 
+        background-color: #808080; 
+        color: white; 
+        position: absolute; /* Essential for the 'move' logic */
+        z-index: 999;
+        transition: 0.1s; /* Makes the jump feel snappy but smooth */
+    }
+    /* ... rest of styles ... */
+</style>
+
+<script>
+    function moveButton() {
+        const btn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
         
-        button { 
-            padding: 15px 35px; 
-            font-size: 20px; 
-            cursor: pointer; 
-            border-radius: 50px; 
-            border: none; 
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        #yesBtn { background-color: #ff4d6d; color: white; box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4); }
-        #noBtn { 
-            background-color: #808080; 
-            color: white; 
-            position: absolute; 
-            z-index: 999;
-        }
-
-        .affirmation-card {
-            max-width: 600px;
-            margin: 20px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(217, 4, 41, 0.1);
-            line-height: 1.8;
-            font-style: italic;
-            border-left: 5px solid #ff4d6d;
-            text-align: left;
-        }
-
-        .main-photo {
-            width: 250px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 5px solid white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-        }
-
-        textarea {
-            width: 80%;
-            max-width: 500px;
-            height: 100px;
-            border-radius: 15px;
-            border: 2px solid #ff4d6d;
-            padding: 15px;
-            font-family: 'Georgia', serif;
-            font-size: 16px;
-            margin-top: 15px;
-            outline: none;
-        }
-    </style>
-</head>
-<body>
-
-    <audio id="vibe">
-        <source src="love-my-baby.mp3" type="audio/mpeg">
-    </audio>
-
-    <div id="main-content">
-        <img src="awelewa.jpg" class="main-photo" alt="AWELEWA">
+        // This calculates boundaries based on the container size
+        // instead of the whole screen, which is more reliable
+        const maxWidth = container.clientWidth - btn.offsetWidth;
+        const maxHeight = container.clientHeight - btn.offsetHeight;
         
-        <h1 style="color: #d90429;">Awéléwà Obinrin</h1>
-
-        <div class="affirmation-card">
-            "It was love at first sight the moment I saw you something definitely shifted I’m pretty sure it was my padlocked heart breaking itself YES that’s the one. There’s just something about you, your presence and your energy felt like home. The way you looked at me like we had history in different lifetime maybe we did but I just knew you were the one from the moment our eyes met. I thought I know what chemistry felt like but this is a whole different level and let’s be honest you were a walking distraction from the jump I couldn’t keep our eyes off you. How do you expect me to keep a straight face when you looked so good and you smiled like that? I just hope you will make my search over because I’ve finally found you and I don’t want to ever look away again."
-        </div>
-
-        <h2 style="color: #d90429;">Will you be my Valentine? 🌹</h2>
+        const x = Math.random() * maxWidth;
+        const y = Math.random() * maxHeight;
         
-        <div class="container">
-            <button id="yesBtn" onclick="celebrate()">Yes!</button>
-            <button id="noBtn" onmouseover="moveButton()" onclick="moveButton()">No</button>
-        </div>
-    </div>
-
-    <script>
-        function moveButton() {
-            const btn = document.getElementById('noBtn');
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth - 50);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight - 50);
-            btn.style.left = x + 'px';
-            btn.style.top = y + 'px';
-        }
-
-        function celebrate() {
-            const song = document.getElementById('vibe');
-            song.play();
-
-            confetti({
-                particleCount: 150,
-                spread: 70,
-                origin: { y: 0.6 }
-            });
-
-            document.body.innerHTML = `
-                <div style="padding-top: 30px;">
-                    <h1 style="color: #d90429;">I KNEW YOU'D SAY YES! ❤️</h1>
-                    <img src="awelewa.jpg" style="width: 250px; border-radius: 20px; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
-                    <p style="font-size: 22px; color: #ff4d6d; font-weight: bold; margin-top: 20px;">Forever to go with you, Awéléwà.</p>
-                    
-                    <div style="margin-top: 30px;">
-                        <h3 style="color: #d90429;">Tell me, why did you say yes? ✨</h3>
-                        <textarea id="reasonInput" placeholder="Write your heart out here..."></textarea>
-                        <br>
-                        <button id="submitBtn" style="background-color: #ff4d6d; color: white; margin-top: 15px;" onclick="finalMessage()">Send my love</button>
-                    </div>
-                </div>
-            `;
-        }
-
-        function finalMessage() {
-            const reason = document.getElementById('reasonInput').value;
-            const myPhoneNumber = "2347063628656";
-            
-            // This encodes the text and opens your WhatsApp
-            const message = encodeURIComponent("My Reason for saying YES: " + reason);
-            const whatsappUrl = `https://wa.me/${myPhoneNumber}?text=${message}`;
-            
-            window.open(whatsappUrl, '_blank');
-
-            document.body.innerHTML = `
-                <div style="padding-top: 100px;">
-                    <h1 style="color: #d90429;">My Heart is Full. ❤️</h1>
-                    <p style="font-size: 20px; max-width: 600px; margin: 0 auto; line-height: 1.6;">
-                        Thank you for your beautiful words.
+        btn.style.left = x + 'px';
+        btn.style.top = y + 'px';
+    }
+    // ... rest of script ...
+</script>
