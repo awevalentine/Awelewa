@@ -56,6 +56,20 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin-bottom: 20px;
         }
+
+        /* Styling for the new text area */
+        textarea {
+            width: 80%;
+            max-width: 500px;
+            height: 100px;
+            border-radius: 15px;
+            border: 2px solid #ff4d6d;
+            padding: 15px;
+            font-family: 'Georgia', serif;
+            font-size: 16px;
+            margin-top: 15px;
+            outline: none;
+        }
     </style>
 </head>
 <body>
@@ -100,13 +114,44 @@
                 origin: { y: 0.6 }
             });
 
+            // This changes the screen to show the photo and the input box
             document.body.innerHTML = `
-                <div style="padding-top: 50px;">
+                <div style="padding-top: 30px;">
                     <h1 style="color: #d90429;">I KNEW YOU'D SAY YES! ❤️</h1>
-                    <img src="awelewa.jpg" style="width: 300px; border-radius: 20px; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
-                    <p style="font-size: 24px; color: #ff4d6d; font-weight: bold; margin-top: 20px;">Forever to go with you, Awéléwà.</p>
+                    <img src="awelewa.jpg" style="width: 250px; border-radius: 20px; border: 8px solid white; box-shadow: 0 10px 20px rgba(0,0,0,0.2);">
+                    <p style="font-size: 22px; color: #ff4d6d; font-weight: bold; margin-top: 20px;">Forever to go with you, Awéléwà.</p>
+                    
+                    <div style="margin-top: 30px;">
+                        <h3 style="color: #d90429;">Tell me, why did you say yes? ✨</h3>
+                        <textarea id="reasonInput" placeholder="Write your heart out here..."></textarea>
+                        <br>
+                        <button id="submitBtn" style="background-color: #ff4d6d; color: white; margin-top: 15px;" onclick="finalMessage()">Send my love</button>
+                    </div>
                 </div>
             `;
+        }
+
+        function finalMessage() {
+            const reason = document.getElementById('reasonInput').value;
+            
+            // Final screen after she "sends" her reason
+            document.body.innerHTML = `
+                <div style="padding-top: 100px;">
+                    <h1 style="color: #d90429;">My Heart is Full. ❤️</h1>
+                    <p style="font-size: 20px; max-width: 600px; margin: 0 auto; line-height: 1.6;">
+                        Thank you for your beautiful words. Every second with you is my favorite memory, Awéléwà.
+                    </p>
+                    <div style="font-size: 80px; margin-top: 30px;">💍🌹🥰</div>
+                    <p style="margin-top: 50px; color: #808080;">(P.S. Take a screenshot of your message and send it to me!)</p>
+                </div>
+            `;
+            
+            confetti({
+                particleCount: 100,
+                startVelocity: 30,
+                spread: 360,
+                origin: { y: 0.5 }
+            });
         }
     </script>
 </body>
